@@ -41,3 +41,8 @@ example
 # generated native folders
 /ios
 /android
+
+# local iOS build outputs
+/build
+/Payload
+*.ipa

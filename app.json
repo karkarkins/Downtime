@@ -1,16 +1,19 @@
 {
   "expo": {
-    "name": "DownTime",
-    "slug": "DownTime",
+    "name": "Downtime",
+    "slug": "downtime",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "downtime",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.karai.downtime",
+      "supportsTablet": false
     },
     "android": {
+      "package": "com.karai.downtime",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -32,7 +35,17 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
         }
-      ]
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Downtime uses your location to set your Home and Work spots.",
+          "locationAlwaysAndWhenInUsePermission": "Downtime checks when you leave work or arrive home so it can suggest something better to do with your free time.",
+          "isIosBackgroundLocationEnabled": true
+        }
+      ],
+      "./plugins/with-no-push-entitlement.js",
+      "expo-notifications"
     ],
     "experiments": {
       "typedRoutes": true,
