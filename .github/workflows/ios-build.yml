@@ -14,12 +14,19 @@ on:
         type: choice
         options: [dev, release]
         default: dev
+      runner:
+        description: macOS runner (switch if one pool is stuck in the queue)
+        type: choice
+        options: [macos-15-intel, macos-latest]
+        default: macos-15-intel
   push:
     tags: ['v*'] # tags build a release
 
 jobs:
   build:
-    runs-on: macos-latest
+    # The Apple Silicon pool (macos-latest) can be too congested to pick up the
+    # job at all; the Intel pool is slower but has separate capacity.
+    runs-on: ${{ github.event.inputs.runner || 'macos-15-intel' }}
     timeout-minutes: 60
     env:
       CONFIGURATION: ${{ (github.event.inputs.variant || 'release') == 'dev' && 'Debug' || 'Release' }}
